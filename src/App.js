@@ -1,58 +1,54 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import styled from 'styled-components'
 
-function App() {
+import { Counter } from './features/counter/Counter';
+import {FeatureGroup} from './components/FeatureGroup'
+import { Item } from './components/Item'
+import { Summary } from './components/Summary'
+
+import { Layout } from './layout/layout'
+
+import parts from './mock/parts.json'
+
+const StyledAppContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin: auto;
+`
+
+const OptionsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+`
+
+const App = () => {
+  const carPartsNames = React.useMemo(() => Object.keys(parts), [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Layout>
+      <StyledAppContainer>
+        <OptionsContainer>
+        {
+          carPartsNames.map(carPartName => {
+            return (
+              <FeatureGroup header={carPartName} key={carPartName}>
+                {
+                  parts[carPartName].sort((a, b) => a.index - b.index).map(carPart => {
+                    return <Item key={carPart.id} name={carPart.name} />
+                  })
+                }
+              </FeatureGroup>
+            )
+          })
+        }
+        </OptionsContainer>
+        <Summary/>
+      </StyledAppContainer>
+    </Layout>
   );
 }
+
+App.displayName = 'App'
 
 export default App;
