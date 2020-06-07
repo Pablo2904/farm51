@@ -8,8 +8,12 @@ Minimum to obiekt z 3 polami:
  * price
 dodatkowo mozna dodac index, aby ustawic kolejnosc czescie wyswietlanych dla danej grupy czesci
 np. silników przy wyborze silnika
+
+
 Przy dodawania dodatkowego koloru w celu wyświelenia go właściwie trzeba dodać pole
 * colorHex
+
+
 z warością kolor hex np dla białego `ffffff`.
 
 
