@@ -6,7 +6,8 @@ const StyledContainer = styled.div`
   padding: 20px;
   background: ${({theme}) => theme.colors.black};
   text-align: left;
-  min-width:300px;
+  min-width: 300px;
+  ${({theme}) => theme.flexColumn};
 `
 
 const StyledH2 = styled.h2`
@@ -15,14 +16,23 @@ const StyledH2 = styled.h2`
 `
 
 const StyledUl = styled.ul`
-  margin-bottom: 10px;
+  margin-bottom: 40px;
+  flex-grow: 1;
 `
 
 const StyledLi = styled.li`
   list-style-type: none;
   margin-bottom: 5px;
-  padding: 0;
   text-transform: capitalize;
+  ${({theme}) => theme.flexSpaceBeetwen};
+`
+
+const StyledSummary = styled.div`
+  ${({theme}) => theme.flexSpaceBeetwen};
+
+  :last-child {
+    font-weight: bold;
+  }
 `
 
 const Summary = ({selection, parts}) => {
@@ -33,17 +43,17 @@ const Summary = ({selection, parts}) => {
 
   const summaryData =  React.useMemo(() => Object.entries(selection), [selection])
 
-  const dataToRender = React.useMemo(() => summaryData.map(item => {
-    return [item[elements.name], parts[item[elements.name]].find(el => el.id === item[elements.value])]
+  const dataToRender = React.useMemo(() => summaryData.map(part => {
+    return [part[elements.name], parts[part[elements.name]].find(el => el.id === part[elements.value])]
   }), [elements.name, elements.value, parts, summaryData])
 
   const countSummaryPrice = React.useCallback(() => {
-    return dataToRender.map(item => {
-      return (item && item[1] && item[1].price) || 0
+    return dataToRender.map(part => {
+      return (part && part[elements.value] && part[elements.value].price) || 0
     }).reduce((prev, curr) => {
       return prev + curr
     }).toFixed(2)
-  }, [dataToRender])
+  }, [dataToRender, elements.value])
 
   return (
     <StyledContainer>
@@ -54,12 +64,16 @@ const Summary = ({selection, parts}) => {
       {
         dataToRender.map((item, index) =>
           <StyledLi key={index}>
-            {item[elements.name]}: {(item[elements.value] && item[elements.value].name) || `Choose Your ${item[elements.name]}.`}
+            <span>{item[elements.name]}:</span>
+            <span>{(item[elements.value] && item[elements.value].name) || `Choose Your ${item[elements.name]}`}</span>
           </StyledLi>
         )
       }
       </StyledUl>
-      <span>Price: {countSummaryPrice()}</span>
+      <StyledSummary>
+        <span>Price:</span>
+        <span>${countSummaryPrice()}</span>
+      </StyledSummary>
     </StyledContainer>
   )
 }

@@ -2,17 +2,16 @@
   "model": {
     "m-1": {
       "engine": ["e-1", "e-2", "e-3"],
-      "color": ["c-1", "c-2", "c-3", "c-4"]
+      "color": ["c-1", "c-2", "c-3"]
     },
     "m-2": {
       "engine": ["e-2"],
-      "color": ["c-1", "c-2", "c-3", "c-4"]
+      "color": ["c-1", "c-2"]
     }
   },
   "engine": {
     "e-1": {
-      "gearbox": ["g-1"],
-      "color": ["c-1"]
+      "gearbox": ["g-1"]
     },
     "e-2": {
       "gearbox": ["g-1", "g-2"]

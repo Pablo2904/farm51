@@ -11,6 +11,8 @@ import selectionActions from '../../app/selection/actions'
   color: ${({ theme }) => theme.colors.white };
   cursor: pointer;
   margin-right: 5px;
+  min-height: 29px;
+  min-width: 40px;
    
   :focus {
     outline: none;
@@ -19,6 +21,7 @@ import selectionActions from '../../app/selection/actions'
   ${props => props.active && css`
     background: ${({ theme }) => theme.colors.black };
     border-color: ${({ theme }) => theme.colors.white };
+    font-weight: bold;
   `}
 
   ${props => props.carPartName ==='color' && css`
@@ -27,8 +30,8 @@ import selectionActions from '../../app/selection/actions'
   `}
 `
 
-const Item = ({ item, active, carPartName, selection, addElement, removeUnder }) => {
-  const clickHander = () => {
+const Part = ({ item, active, carPartName, selection, addElement, removeUnder }) => {
+  const clickHander = React.useCallback(() => {
     const carPartNameCapitalized = carPartName.charAt(0).toUpperCase() + carPartName.slice(1)
 
     if (selection[carPartName] === item.id) {
@@ -41,7 +44,7 @@ const Item = ({ item, active, carPartName, selection, addElement, removeUnder })
     if (selection[carPartName]) {
       removeUnder(carPartNameCapitalized)
     }
-  }
+  }, [addElement, carPartName, item.id, removeUnder, selection])
 
   return (
     <StyledItem
@@ -50,18 +53,20 @@ const Item = ({ item, active, carPartName, selection, addElement, removeUnder })
       carPartName={carPartName}
       name={item.colorHex}
     >
-      {item.name}
+      {carPartName === 'color' ? '' : item.name}
     </StyledItem>
   )
 }
 
 const mapDispatchToProps = dispatch => ({
   addElement: (elId, carPartName) => dispatch(selectionActions[`add${carPartName}`](elId)),
-  removeUnder: (carPartName) => dispatch(selectionActions[`removeUnder${carPartName}`]())
+  removeUnder: (carPartName) => 
+    Object.keys(selectionActions).includes(`removeUnder${carPartName}`)
+    && dispatch(selectionActions[`removeUnder${carPartName}`]())
 })
 
 const mapStateToProps = state => ({
   selection: state.selection
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Item)
+export default connect(mapStateToProps, mapDispatchToProps)(Part)

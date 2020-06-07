@@ -3,9 +3,13 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { theme } from './theme'
 
 const GlobalStyle = createGlobalStyle`
-  body, h5, h2, ul {
+  body, h3, h2, ul {
     padding: 0;
     margin: 0;
+  }
+
+  h3 {
+    font-size: 1rem;
   }
 
   *, *::before, *::after {
@@ -13,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 const StyledWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.darkGrey };
+  background: ${({ theme }) => theme.colors.blueSea };
   color: ${({ theme }) => theme.colors.white };
   height: ${({ theme }) => theme.screenHeight.full };
   ${({theme}) => theme.flexCenter};

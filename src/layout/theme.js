@@ -1,8 +1,10 @@
 import { colors, screenHeight } from './variables'
-import { flexCenter } from './mixins'
+import { flexCenter, flexSpaceBeetwen, flexColumn } from './mixins'
 
 export const theme = {
   colors,
   screenHeight,
-  flexCenter
+  flexCenter,
+  flexSpaceBeetwen,
+  flexColumn
 }

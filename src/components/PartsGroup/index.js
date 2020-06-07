@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 
-const StyleHeader = styled.h5`
+const StyleHeader = styled.h3`
   margin-bottom: 5px;
   text-align: left;
   display: block;
@@ -14,9 +14,8 @@ const StyledChildrenContainer = styled.div`
 `
 
 const StyledGroupContainer = styled.div`
-  display: flex;
+  ${({theme}) => theme.flexColumn};
   align-items: flex-start;
-  flex-direction: column;
 `
 
 const PartsGroup = ({ header, children }) => {

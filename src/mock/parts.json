@@ -59,6 +59,13 @@
       "name": "green",
       "price": 10.02,
       "index": 2
+    }, 
+    {
+      "id": "c-3",
+      "colorHex": "ffffff",
+      "name": "white",
+      "price": 15,
+      "index": 3
     }
   ]
 }

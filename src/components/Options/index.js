@@ -2,19 +2,22 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import PartsGroup from '../components/PartsGroup'
-import Item from '../components/Item'
+import PartsGroup from '../PartsGroup'
+import Part from '../Part'
 
-import Schema from '../mock/modelSchema.json'
+import Schema from '../../mock/modelSchema.json'
 
 const OptionsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${({theme}) => theme.flexColumn};
   margin-right: 20px;
   padding: 20px 0 10px 20px;
 `
 
-const AppContainer = ({ parts, selection }) => {
+const Options = ({ parts, selection }) => {
+  const element = {
+    name: 0,
+    value: 1
+  }
   const [data, setData] = React.useState(parts)
   const carPartsNames = React.useMemo(() => 
     Object.keys(parts)
@@ -27,21 +30,22 @@ const AppContainer = ({ parts, selection }) => {
 
   React.useEffect(() => {
     const validParts = Object.entries(selection).map(item => {
-      if (item[0] && item[1]) {
-        return Schema[item[0]] && Schema[item[0]][item[1]]
+      if (item[element.name] && item[element.value]) {
+        return Schema[item[element.name]] && Schema[item[element.name]][item[element.value]]
       } else {
         return undefined
       }
     }).filter(i => i)
+    
     const filteredPartsIds = Object.assign(...validParts, {})
 
-    const entries = Object.assign(...Object.entries(filteredPartsIds)
+    const filteredParts = Object.assign(...Object.entries(filteredPartsIds)
       .map(part => {
-        return { [part[0]]: parts[part[0]].filter(item => part[1].includes(item.id))}
+        return { [part[element.name]]: parts[part[element.name]].filter(item => part[element.value].includes(item.id))}
       }
     ), {})
 
-    setData({ ...parts, ...entries })
+    setData({ ...parts, ...filteredParts })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[selection])
 
@@ -55,12 +59,14 @@ const AppContainer = ({ parts, selection }) => {
                 data[carPartName]
                 .sort((a, b) => a.index - b.index)
                 .map(carPart => {
-                  return  <Item
-                            key={carPart.id}
-                            item={carPart}
-                            carPartName={carPartName}
-                            active={isSelected(carPartName, carPart.id)}
-                          /> 
+                  return  (
+                    <Part
+                      key={carPart.id}
+                      item={carPart}
+                      carPartName={carPartName}
+                      active={isSelected(carPartName, carPart.id)}
+                    /> 
+                  )
                 })
               }
             </PartsGroup>
@@ -76,4 +82,4 @@ const mapStateToProps = state => ({
   selection: state.selection
 })
 
-export default connect(mapStateToProps, {})(AppContainer)
+export default connect(mapStateToProps, {})(Options)
