@@ -16,10 +16,25 @@ const addColor = item => ({
   type: types.ADD_COLOR, item
 })
 
+const removeUnderModel = () => ({
+  type: types.REMOVE_UNDER_MODEL
+})
+
+const removeUnderEngine = () => ({
+  type: types.REMOVE_UNDER_ENGINE
+})
+
+const removeUnderGearbox = () => ({
+  type: types.REMOVE_UNDER_GEARBOX
+})
+
 
 export default {
   addModel,
   addEngine,
   addGearbox,
-  addColor
+  addColor,
+  removeUnderModel,
+  removeUnderEngine,
+  removeUnderGearbox
 }

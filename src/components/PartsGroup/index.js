@@ -5,6 +5,7 @@ const StyleHeader = styled.h5`
   margin-bottom: 5px;
   text-align: left;
   display: block;
+  text-transform: capitalize;
 `
 
 const StyledChildrenContainer = styled.div`
@@ -18,7 +19,7 @@ const StyledGroupContainer = styled.div`
   flex-direction: column;
 `
 
-export const FeatureGroup = ({ header, children }) => {
+const PartsGroup = ({ header, children }) => {
   return (
     <StyledGroupContainer>
       <StyleHeader>{header}</StyleHeader>
@@ -29,4 +30,4 @@ export const FeatureGroup = ({ header, children }) => {
   )
 }
 
-FeatureGroup.displayName = 'FeatureGroup'
+export default PartsGroup

@@ -2,15 +2,14 @@ import React from 'react';
 import styled from 'styled-components'
 
 import AppContainer from './containers/AppContainer'
-import { Summary } from './components/Summary'
+import Summary from './components/Summary'
 
 import { Layout } from './layout/layout'
 
 
 const StyledAppContainer = styled.div`
   display: flex;
-  align-items: flex-start;
-  margin: auto;
+  border: 3px solid ${({theme}) => theme.colors.black};
 `
 
 const App = () => {

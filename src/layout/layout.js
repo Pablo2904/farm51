@@ -3,7 +3,7 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { theme } from './theme'
 
 const GlobalStyle = createGlobalStyle`
-  body, h5 {
+  body, h5, h2, ul {
     padding: 0;
     margin: 0;
   }

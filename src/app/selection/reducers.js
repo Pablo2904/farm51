@@ -25,6 +25,18 @@ const selectionReducer = (state = initialState, action) => {
       return {
         ...state, color: action.item
       }
+    case types.REMOVE_UNDER_MODEL:
+      return {
+        ...state, engine: '', gearbox: '', color: ''
+      }
+    case types.REMOVE_UNDER_ENGINE:
+      return {
+        ...state, gearbox: '', color: ''
+      }
+    case types.REMOVE_UNDER_GEARBOX:
+      return {
+        ...state, color: ''
+      }
     default:
       return state
   }

@@ -1,23 +1,23 @@
 {
-  "Model": [
+  "model": [
     {
       "id": "m-1",
       "name": "Wkoda fabia",
-      "price": 200,
+      "price": 200.02,
       "index": 2
     },
     {
       "id": "m-2",
       "name": "Porsche",
-      "price": 300,
+      "price": 300.01,
       "index": 1
     }
   ],
-  "Engine": [
+  "engine": [
     {
       "id": "e-1",
       "name": "5.2L 532BHP",
-      "price": 100,
+      "price": 100.02,
       "index": 2
     },
     {
@@ -29,33 +29,35 @@
     {
       "id": "e-3",
       "name": "10.2L 800BHP",
-      "price": 180,
+      "price": 180.01,
       "index": 1
     }
   ],
-  "Gearbox": [
+  "gearbox": [
     {
       "id": "g-1",
       "name": "manual",
-      "price": 50
+      "price": 50.02
     },
     {
       "id": "g-2",
       "name": "automat",
-      "price": 60
+      "price": 60.01
     }
   ],
-  "Color": [
+  "color": [
     {
       "id": "c-1",
-      "name": "c8362e",
-      "price": 10,
+      "colorHex": "c8362e",
+      "name": "red",
+      "price": 10.01,
       "index": 1
     },
     {
       "id": "c-2",
-      "name": "bada55",
-      "price": 10,
+      "colorHex": "bada55",
+      "name": "green",
+      "price": 10.02,
       "index": 2
     }
   ]

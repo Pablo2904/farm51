@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 import selectionActions from '../../app/selection/actions'
 
  const StyledItem = styled.button`
-  border: 1px solid black;
+  border: 2px solid ${({ theme }) => theme.colors.black};
+  border-radius: 4px;
   padding: 5px 10px;
   background: ${({ theme }) => theme.colors.grey };
   color: ${({ theme }) => theme.colors.white };
   cursor: pointer;
+  margin-right: 5px;
    
   :focus {
     outline: none;
@@ -16,27 +18,50 @@ import selectionActions from '../../app/selection/actions'
 
   ${props => props.active && css`
     background: ${({ theme }) => theme.colors.black };
+    border-color: ${({ theme }) => theme.colors.white };
+  `}
+
+  ${props => props.carPartName ==='color' && css`
+    background: ${props => `#${props.name}` };
+    color: ${props => `#${props.name}` };
   `}
 `
 
-const Item = (props) => {
-  const { item, active, carPartName } = props
+const Item = ({ item, active, carPartName, selection, addElement, removeUnder }) => {
   const clickHander = () => {
-    console.log(item.id, carPartName)
-    props.addElement(item.id, carPartName)
+    const carPartNameCapitalized = carPartName.charAt(0).toUpperCase() + carPartName.slice(1)
+
+    if (selection[carPartName] === item.id) {
+      addElement('', carPartNameCapitalized)
+      removeUnder(carPartNameCapitalized)
+    } else {
+      addElement(item.id, carPartNameCapitalized)
+    }
+
+    if (selection[carPartName]) {
+      removeUnder(carPartNameCapitalized)
+    }
   }
 
   return (
-    <StyledItem active={active} onClick={clickHander}>
+    <StyledItem
+      active={active}
+      onClick={clickHander}
+      carPartName={carPartName}
+      name={item.colorHex}
+    >
       {item.name}
     </StyledItem>
   )
 }
 
-Item.displayName = 'Item'
-
 const mapDispatchToProps = dispatch => ({
-  addElement: (elId, carPartName) => dispatch(selectionActions[`add${carPartName}`](elId))
+  addElement: (elId, carPartName) => dispatch(selectionActions[`add${carPartName}`](elId)),
+  removeUnder: (carPartName) => dispatch(selectionActions[`removeUnder${carPartName}`]())
 })
 
-export default connect(null, mapDispatchToProps)(Item)
+const mapStateToProps = state => ({
+  selection: state.selection
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Item)
