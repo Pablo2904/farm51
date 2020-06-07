@@ -6,15 +6,15 @@ Minimum to obiekt z 3 polami:
  * id
  * name
  * price
-dodatkowo mozna dodac index, aby ustawic kolejnosc czescie wyswietlanych dla danej grupy czesci
-np. silników przy wyborze silnika
+dodatkowo mozna dodac pole `index`, aby ustawic kolejnosc części wyswietlanych dla danej grupy.
+np. silników przy wyborze silnika.
 
 
 Przy dodawania dodatkowego koloru w celu wyświelenia go właściwie trzeba dodać pole
 * colorHex
 
 
-z warością kolor hex np dla białego `ffffff`.
+z warością w formacie hex, np dla białego `ffffff`.
 
 
 Przy dodaniu jakiejś grupy częsci samochodowych trzeba to obsłuyć w Reduxie tzn
@@ -23,11 +23,11 @@ typ, akcje i reducer
 
 
 Przy reducerach trzeba dodać dwa:
-jeden który dodaje nam element do stanu i drugi czyszczący element poniej niego w hierarchi (trzeba zedytować wszystkie czyszczace reducery).
+jeden który dodaje nam element do stanu i drugi czyszczący element ponizej niego w hierarchi (trzeba zedytować wszystkie czyszczace reducery).
 
 
-Czesci renderuja sie warunkowo na podstawie "modelSchema" z folderu `mock`, Mozna dodać tam własne reguły.
-Na tę chwilę wybór silników rózni się w zaleności od wybranego modelu, jak i skrzynia biegów w zaleności od silnika.
+Kolejne grupy modułów samochodu, renderuja sie warunkowo na podstawie "modelSchema" z folderu `mock`. Mozna dodać tam własne reguły.
+Na tę chwilę wybór silników rózni się w zaleności od wybranego modelu, jak i skrzynia biegów w zaleności od modelu silnika.
 
 ## Available Scripts
 
