@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 const StyledWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.grey };
+  background: ${({ theme }) => theme.colors.darkGrey };
   color: ${({ theme }) => theme.colors.white };
   height: ${({ theme }) => theme.screenHeight.full };
   ${({theme}) => theme.flexCenter};

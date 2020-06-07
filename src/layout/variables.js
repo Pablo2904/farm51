@@ -1,13 +1,8 @@
-
 export const colors = {
   white: '#ffffff',
   darkGrey: '#282c34',
-  black: '#000000',
+  black: '#0d021f',
   grey: '#808080'
-}
-
-export const borders = {
-  standard: '1px solid'
 }
 
 export const screenHeight = {

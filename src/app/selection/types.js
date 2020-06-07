@@ -1,0 +1,11 @@
+const ADD_MODEL = 'ADD_MODEL'
+const ADD_ENGINE = 'ADD_ENGINE'
+const ADD_GEARBOX = 'ADD_GEARBOX'
+const ADD_COLOR = 'ADD_COLOR'
+
+export default {
+  ADD_MODEL,
+  ADD_ENGINE,
+  ADD_GEARBOX,
+  ADD_COLOR
+}
